@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Lead;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendNewLead;
 
 class AdmissionController extends Controller
 {
@@ -16,7 +19,19 @@ class AdmissionController extends Controller
     {
         $data = $request->all();
 
-        dd($data);
+        $newLead = new Lead;
+
+        $newLead->name = $data['name'];
+        $newLead->email = $data['email'];
+        $newLead->message = $data['message'];
+
+        $newLead->save();
+
+        $message = 'Complimenti, inserito con successo';
+
+        Mail::to('michele@boolean.careers')->send(new SendNewLead($newLead));
+
+        return view('admission.index', compact('message'));
     }
 
 }
