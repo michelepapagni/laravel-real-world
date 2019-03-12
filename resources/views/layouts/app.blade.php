@@ -17,7 +17,9 @@
                     <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('admission.index') }}">Iscriviti</a>
+                    <a class="nav-link" href="{{ route('admission.index') }}">
+                        @lang('general.admission')
+                    </a>
                 </li>
             </ul>
         </div>

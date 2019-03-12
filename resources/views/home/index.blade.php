@@ -1,4 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    Ciao
+    <a href="/en">EN</a>
+    <a href="/it">IT</a>
 @endsection

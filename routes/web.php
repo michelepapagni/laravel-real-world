@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
+    Route::get('/', 'HomeController@index');
 
-Route::get('/iscriviti', 'AdmissionController@index')->name('admission.index');
-Route::post('/iscriviti', 'AdmissionController@save')->name('admission.save');
+    Route::get('/iscriviti', 'AdmissionController@index')->name('admission.index');
+    Route::post('/iscriviti', 'AdmissionController@save')->name('admission.save');
+});

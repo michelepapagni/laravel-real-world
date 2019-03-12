@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Lead;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendNewLead;
+use App\Jobs\TestJob;
 
 class AdmissionController extends Controller
 {
@@ -29,7 +28,7 @@ class AdmissionController extends Controller
 
         $message = 'Complimenti, inserito con successo';
 
-        Mail::to('michele@boolean.careers')->send(new SendNewLead($newLead));
+        TestJob::dispatch($newLead);
 
         return view('admission.index', compact('message'));
     }
